@@ -9,4 +9,9 @@ public class ResponseMessageTest {
 	public void testExample() {
 		Assert.assertEquals(true, true);
 	}
+
+	@Test
+	public void testExample2() {
+		Assert.assertEquals(1, 1);
+	}
 }
