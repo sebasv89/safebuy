@@ -12,6 +12,6 @@ public class ResponseMessageTest {
 
 	@Test
 	public void testExample2() {
-		Assert.assertEquals(1, 1);
+		Assert.assertEquals(1, 2);
 	}
 }
