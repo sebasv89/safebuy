@@ -61,7 +61,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		    <div class="contact_desc">
 		        <div class="wrap">
 			         <div class="contact-form">
-				  	   <h2>REGISTRO EXAMPLE MODIFIED USING CI BUILD</h2>
+				  	   <h2>REGISTRO EXAMPLE MODIFIED USING CI BUILD MODIFIED ON MONDAY</h2>
 					     <div class="left_form">
 					    	<div>
 						    	<span>
