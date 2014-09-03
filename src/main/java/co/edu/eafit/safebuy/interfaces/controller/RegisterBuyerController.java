@@ -60,7 +60,6 @@ public class RegisterBuyerController {
 		Buyer buyer = new Buyer();
 		buyer.setName(name.toLowerCase());
 		buyer.setLastName(lastName);
-
 		List<Buyer> existingBuyersWithId = persistenceService.executeQuery(Buyer.class, "SELECT b FROM Buyer b WHERE b.name = '" + name + "'");
 		
 		if (CollectionUtils.isNotEmpty(existingBuyersWithId)) {
