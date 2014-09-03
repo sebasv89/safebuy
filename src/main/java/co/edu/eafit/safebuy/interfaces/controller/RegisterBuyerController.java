@@ -1,9 +1,9 @@
 package co.edu.eafit.safebuy.interfaces.controller;
 
 import java.text.ParseException;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,8 +21,6 @@ public class RegisterBuyerController {
 
 	@Autowired
 	private PersistenceService persistenceService;
-
-	Map<String, Buyer> persistenceDummyMap = new ConcurrentHashMap<String, Buyer>();
 
 	@RequestMapping("/registerBuyer.html")
 	public ModelAndView getPage() {
@@ -63,13 +61,15 @@ public class RegisterBuyerController {
 		buyer.setName(name.toLowerCase());
 		buyer.setLastName(lastName);
 
-		if (persistenceDummyMap.containsKey(user.toLowerCase())) {
+		List<Buyer> existingBuyersWithId = persistenceService.executeQuery(Buyer.class, "SELECT b FROM Buyer b WHERE b.name = '" + name + "'");
+		
+		if (CollectionUtils.isNotEmpty(existingBuyersWithId)) {
 			return ResponseMessage.createMessage(
 					"El usuario comprador ya existe: " + user,
 					MessageType.error);
 		}
 
-		persistenceDummyMap.put(user.toLowerCase(), buyer);
+		persistenceService.save(buyer);
 
 		return ResponseMessage.createMessage("Comprador Creado",
 				MessageType.success);

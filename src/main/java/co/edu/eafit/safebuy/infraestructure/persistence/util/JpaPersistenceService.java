@@ -3,6 +3,7 @@ package co.edu.eafit.safebuy.infraestructure.persistence.util;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Component;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JpaPersistenceService implements PersistenceService {
 
-	// @PersistenceContext
+	 @PersistenceContext
 	private EntityManager entityManager;
 
 	@Override
