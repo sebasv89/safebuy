@@ -12,6 +12,7 @@ public class ResponseMessageTest {
 
 	@Test
 	public void testExample2() {
-		Assert.assertEquals(1, 1);
+		System.out.println("Printing something...");
+		Assert.assertEquals(1, 2);
 	}
 }
