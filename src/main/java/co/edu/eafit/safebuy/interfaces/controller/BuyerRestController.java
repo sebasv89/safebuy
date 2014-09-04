@@ -27,7 +27,7 @@ public class BuyerRestController {
 	
 	@RequestMapping("/hola.html")
 	public ModelAndView getPage() {
-		return new ModelAndView("index.html");
+		return new ModelAndView("/pages/index.jsp");
 	}
 	
 	@RequestMapping(value = "/rest/buyer", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

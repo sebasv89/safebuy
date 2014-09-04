@@ -8,9 +8,6 @@
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	=)
-	<div id="header"></div>
-	<div id="container"></div>
-	<div id="footer"></div>
+	@jessecogollo
 </body>
 </html>
