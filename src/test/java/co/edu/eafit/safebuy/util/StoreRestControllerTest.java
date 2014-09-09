@@ -89,12 +89,10 @@ public class StoreRestControllerTest {
 	
 	@Test
 	public void deleteStoreTest(){
-		//doNothing().when(persistenceService).remove(storeDefault);
-		//doReturn(null).when(persistenceService).remove(storeDefault);//no funciona.
-		//doThrow(RuntimeException.class).when(persistenceService).remove(storeDefault);
-		//when(persistenceService.remove(storeDefault));
+		when(persistenceService.findById(Store.class, 0)).thenReturn(storeDefault);
+		Store returnedStore= sut.getStore(0);
 		sut.deleteStore(0);
-		verify(persistenceService, never()).remove(storeDefault);
+		verify(persistenceService).remove(returnedStore);
 	}
 
 }
