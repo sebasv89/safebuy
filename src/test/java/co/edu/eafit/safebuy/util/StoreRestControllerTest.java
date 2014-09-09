@@ -1,18 +1,14 @@
 package co.edu.eafit.safebuy.util;
 
-import java.awt.List;
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 
 import junit.framework.Assert;
 
-import javax.servlet.http.HttpServletResponse;
-
-import org.hamcrest.Matcher;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InOrder;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -26,8 +22,12 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class StoreRestControllerTest {
 	
+	private List<Store> listDefault;
+	private Store storeDefault = new Store();
+	private Store otherStoreDefault = new Store();
+	
 	@InjectMocks
-	private StoreRestController sut;
+	private StoreRestController sut = new StoreRestController();
 	
 	@Mock private PersistenceService persistenceService;
 	@Mock private Store store;
@@ -39,7 +39,16 @@ public class StoreRestControllerTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		sut = new StoreRestController();
+		listDefault = new ArrayList<Store>();
+		
+		storeDefault.setId(0);
+		storeDefault.setName("jesse");
+		storeDefault.setNit("900100200");
+		listDefault.add(storeDefault);
+		otherStoreDefault.setId(1);
+		otherStoreDefault.setName("javier");
+		otherStoreDefault.setNit("900100201");
+		listDefault.add(otherStoreDefault);
 	}
 
 	@After
@@ -47,131 +56,45 @@ public class StoreRestControllerTest {
 	}
 	
 	@Test
-	public void getListStore() {
-		//sut.getStoreList(response);
-		//Assert.assertEquals("", 0, 0);
+	public void getListStoreTest(){
+		when(persistenceService.executeQuery(Store.class, "SELECT s FROM Store s")).thenReturn(listDefault);
+		List<Store> returnedList= sut.getStoreList();
+		Assert.assertEquals(listDefault, returnedList);
+		verify(persistenceService).executeQuery(Store.class, "SELECT s FROM Store s");
 	}
 	
 	@Test
-    public void testone() {
-		List mockedList = mock(List.class);
-		//using mock object
-		mockedList.add("one");
-		mockedList.clear();
-		//verification
-		verify(mockedList).add("one");
-		verify(mockedList).clear();		
-
-    }
-	
-	@Test
-	public void testtwo(){
-		LinkedList mockedList = mock(LinkedList.class);
-		when(mockedList.get(0)).thenReturn("first");
-		//when(mockedList.get(1)).thenThrow(new RuntimeException());
-		System.out.println(mockedList.get(0));
-		System.out.println(mockedList.get(1));
-		System.out.println(mockedList.get(999));(mockedList).get(0);
-	}
-
-	@Test
-	public void testthree(){
-
-		LinkedList mockedList = mock(LinkedList.class);
-		when(mockedList.get(anyInt())).thenReturn("element");
-		//when(mockedList.contains(argThat(isValid()))).thenReturn("element");
-		System.out.println(mockedList.get(999));
-		verify(mockedList).get(anyInt());
+	public void getStoreByIdTest(){
+		when(persistenceService.findById(Store.class, 0)).thenReturn(storeDefault);
+		Store returnedStore= sut.getStore(0);
+		Assert.assertEquals(storeDefault, returnedStore);
+		verify(persistenceService).findById(Store.class,0);
 	}
 	
 	@Test
-	public void testfour(){
-		
-		List mockedList = mock(List.class);
-		mockedList.add("once");
-		mockedList.add("twice");
-		mockedList.add("twice");
-		mockedList.add("three times");
-		mockedList.add("three times");
-		mockedList.add("three times");
-		verify(mockedList).add("once");
-		verify(mockedList, times(1)).add("once");
-		verify(mockedList, times(2)).add("twice");
-		verify(mockedList, times(3)).add("three times");
-		verify(mockedList, never()).add("never happened");
-		verify(mockedList, atLeastOnce()).add("three times");
-		//verify(mockedList, atLeast(2)).add("five times");
-		verify(mockedList, atMost(5)).add("three times");
-		
+	public void createStoreTest(){
+		when(persistenceService.save(storeDefault)).thenReturn(storeDefault);
+		Store returnedStore= sut.createStore(storeDefault);
+		Assert.assertEquals(storeDefault, returnedStore);
+		verify(persistenceService).save(storeDefault);
 	}
 	
 	@Test
-	public void testfive(){
-		List mockedList = mock(List.class);
-		doThrow(new RuntimeException()).when(mockedList).clear();
-		mockedList.clear();
+	public void updateStoreTest(){
+		when(persistenceService.update(otherStoreDefault)).thenReturn(otherStoreDefault);
+		sut.updateStore(storeDefault,0);
+		//Assert.assertEquals(storeDefault, returnedStore);
+		verify(persistenceService).update(storeDefault);
 	}
 	
 	@Test
-	public void testsix(){
-		List singleMock = mock(List.class);
-		singleMock.add("was added first");
-		singleMock.add("was added second");
-		InOrder inOrder = inOrder(singleMock);
-		inOrder.verify(singleMock).add("was added first");
-		inOrder.verify(singleMock).add("was added second");
-		List firstMock = mock(List.class);
-		List secondMock = mock(List.class);
-		firstMock.add("was called first");
-		secondMock.add("was called second");
-		InOrder inOrder2 = inOrder(firstMock, secondMock);
-		inOrder2.verify(firstMock).add("was called first");
-		inOrder2.verify(secondMock).add("was called second");
-	}
-	
-	@Test
-	public void testseven(){
-		List mockOne = mock(List.class);
-		mockOne.add("one");
-		verify(mockOne).add("one");
-		verify(mockOne, never()).add("two");
-		//verifyZeroInteractions(mockTwo, mockThree);
-
-	}
-	
-	@Test
-	public void testeight(){
-		List mockedList = mock(List.class);
-		mockedList.add("one");
-		//mockedList.add("two");
-		verify(mockedList).add("one");
-		verifyNoMoreInteractions(mockedList);
-	}
-	
-	@Test
-	public void testten(){
-		List mock = mock(List.class);
-		//when(mock.add("some arg"))
-		  //.thenThrow(new RuntimeException())
-		  //.thenReturn("foo");
-		//mock.clear();
-		//System.out.println(mock.add("some arg"));
-		//System.out.println(mock.add("some arg"));
-
-	}
-	
-	@Test
-	public void testtirteen(){
-		/*List list = new List();
-		List spy = spy(list);
-		when(spy.size()).thenReturn(100);
-		spy.add("one");
-		spy.add("two");
-		System.out.println(spy.get(0));
-		System.out.println(spy.size());
-		verify(spy).add("one");
-		verify(spy).add("two");
-*/
+	public void deleteStoreTest(){
+		//doNothing().when(persistenceService).remove(storeDefault);
+		//doReturn(null).when(persistenceService).remove(storeDefault);//no funciona.
+		//doThrow(RuntimeException.class).when(persistenceService).remove(storeDefault);
+		//when(persistenceService.remove(storeDefault));
+		sut.deleteStore(0);
+		verify(persistenceService, never()).remove(storeDefault);
 	}
 
 }

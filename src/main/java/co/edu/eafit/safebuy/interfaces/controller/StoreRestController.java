@@ -2,8 +2,6 @@ package co.edu.eafit.safebuy.interfaces.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,32 +29,33 @@ public class StoreRestController {
 	
 	@RequestMapping(value = "/rest/store", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public List<Store> getStoreList(HttpServletResponse response) {
+	public List<Store> getStoreList() {
 		return persistenceService.executeQuery(Store.class, "SELECT s FROM Store s");
 	}
 	
 	@RequestMapping(value = "/rest/store/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public Store getStore(HttpServletResponse response, @PathVariable("id") int id) {
+	public Store getStore(@PathVariable("id") int id) {
 		return persistenceService.findById(Store.class, id);
 	}
 	
 	@RequestMapping(value = "/rest/store", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public Store createStore(@RequestBody Store store, HttpServletResponse response) {
+	public Store createStore(@RequestBody Store store) {
 		return persistenceService.save(store);
 	}
 	
 	@RequestMapping(value = "/rest/store/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public void updateStore(@RequestBody Store store, @PathVariable("id") int id, HttpServletResponse response) {
-		persistenceService.update(store);
+	@ResponseBody
+	public Store updateStore(@RequestBody Store store, @PathVariable("id") int id) {
+		return persistenceService.update(store);
 	}
 	
 	@RequestMapping(value = "/rest/store/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
-	public void deleteStore(@PathVariable("id") int id, HttpServletResponse response) {
+	public void deleteStore(@PathVariable("id") int id) {
 		persistenceService.remove(persistenceService.findById(Store.class, id));
 	}
 
