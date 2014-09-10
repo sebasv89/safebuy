@@ -48,7 +48,7 @@ public class BuyerRestController {
 	@RequestMapping(value = "/rest/buyer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public Buyer createSafeBuyer(@RequestBody Buyer buyer, HttpServletResponse response) {
+	public Buyer createSafeBuyer(@RequestBody Buyer buyer) {
 		return persistenceService.save(buyer);
 	}
 
