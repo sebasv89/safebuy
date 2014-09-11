@@ -37,7 +37,6 @@ public class BuyerRestController {
 		return persistenceService.executeQuery(Buyer.class, "SELECT b FROM Buyer b");
 	}
 	
-	
 	@RequestMapping(value = "/rest/buyer/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Buyer getSafeBuyer(HttpServletResponse response, @PathVariable("id") int id) {
