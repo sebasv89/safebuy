@@ -1,4 +1,4 @@
-package co.edu.eafit.safebuy.interfaces.controller;
+package com.talosdigital.safebuy.interfaces.controller;
 
 import java.util.List;
 
@@ -16,8 +16,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import co.edu.eafit.safebuy.domain.model.comprador.Buyer;
-import co.edu.eafit.safebuy.infraestructure.persistence.util.PersistenceService;
+
+
+
+
+
+
+
+
+
+
+import com.talosdigital.safebuy.domain.model.Buyer;
+import com.talosdigital.safebuy.infraestructure.persistence.util.PersistenceService;
 
 @Controller
 public class BuyerRestController {
@@ -29,10 +39,10 @@ public class BuyerRestController {
 	public ModelAndView getPage() {
 		return new ModelAndView("/pages/index.jsp");
 	}
-	
+
 	@RequestMapping(value = "/rest/buyer", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public List<Buyer> getSafeBuyerList(HttpServletResponse response) {
+	public List<Buyer> getSafeBuyerList() {
 		//response.setHeader("Content-type", MediaType.APPLICATION_JSON.toString());
 		return persistenceService.executeQuery(Buyer.class, "SELECT b FROM Buyer b");
 	}
@@ -53,13 +63,13 @@ public class BuyerRestController {
 
 	@RequestMapping(value = "/rest/buyer/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public void updateSafeBuyer(@RequestBody Buyer buyer, @PathVariable("id") int id, HttpServletResponse response) {
+	public void updateSafeBuyer(@RequestBody Buyer buyer, @PathVariable("id") int id) {
 		persistenceService.update(buyer);
 	}
 
 	@RequestMapping(value = "/rest/buyer/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
-	public void deleteSafeBuyer(@PathVariable("id") int id, HttpServletResponse response) {
+	public void deleteSafeBuyer(@PathVariable("id") int id) {
 		persistenceService.remove(persistenceService.findById(Buyer.class, id));
 	}
 }

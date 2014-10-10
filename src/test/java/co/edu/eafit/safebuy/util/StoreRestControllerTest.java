@@ -14,9 +14,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import co.edu.eafit.safebuy.domain.model.comprador.Store;
-import co.edu.eafit.safebuy.infraestructure.persistence.util.PersistenceService;
-import co.edu.eafit.safebuy.interfaces.controller.StoreRestController;
+import com.talosdigital.safebuy.domain.model.Store;
+import com.talosdigital.safebuy.infraestructure.persistence.util.PersistenceService;
+import com.talosdigital.safebuy.interfaces.controller.StoreRestController;
+
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)

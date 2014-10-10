@@ -1,4 +1,4 @@
-package co.edu.eafit.safebuy.util;
+package com.talosdigital.safebuy.util;
 
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;

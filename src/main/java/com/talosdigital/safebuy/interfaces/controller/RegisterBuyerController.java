@@ -1,4 +1,4 @@
-package co.edu.eafit.safebuy.interfaces.controller;
+package com.talosdigital.safebuy.interfaces.controller;
 
 import java.text.ParseException;
 import java.util.List;
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import co.edu.eafit.safebuy.domain.model.comprador.Buyer;
-import co.edu.eafit.safebuy.infraestructure.persistence.util.PersistenceService;
-import co.edu.eafit.safebuy.util.MessageType;
-import co.edu.eafit.safebuy.util.ResponseMessage;
+import com.talosdigital.safebuy.domain.model.Buyer;
+import com.talosdigital.safebuy.infraestructure.persistence.util.PersistenceService;
+import com.talosdigital.safebuy.util.MessageType;
+import com.talosdigital.safebuy.util.ResponseMessage;
 
 @Controller
 public class RegisterBuyerController {

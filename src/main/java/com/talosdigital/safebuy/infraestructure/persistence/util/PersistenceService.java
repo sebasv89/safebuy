@@ -1,4 +1,4 @@
-package co.edu.eafit.safebuy.infraestructure.persistence.util;
+package com.talosdigital.safebuy.infraestructure.persistence.util;
 
 import java.util.List;
 
@@ -17,6 +17,15 @@ public interface PersistenceService {
 
 	<T> T findById(Class<T> entityClass, int id);
 
+	/**
+	 * The annotation @Transactional create the factory, initialize the entity
+	 * manager, then initialize the transaction, do the persist, and in the end 
+	 * close the connection with the database.
+	 * @param resultClass
+	 * @param query
+	 * @param parameters
+	 * @return List with all the results.
+	 */
 	@Transactional
 	<T> List<T> executeQuery(Class<T> resultClass, String query,
 			String... parameters);

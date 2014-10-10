@@ -1,4 +1,4 @@
-package co.edu.eafit.safebuy.domain.model.comprador;
+package com.talosdigital.safebuy.domain.model;
 
 import java.io.Serializable; 
 

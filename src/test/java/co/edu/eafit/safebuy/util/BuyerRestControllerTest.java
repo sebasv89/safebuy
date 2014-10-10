@@ -6,10 +6,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import co.edu.eafit.safebuy.interfaces.controller.BuyerRestController;
+import com.talosdigital.safebuy.interfaces.controller.BuyerRestController;
 
 public class BuyerRestControllerTest {
 	
+	@SuppressWarnings("unused")
 	private BuyerRestController sut;
 
 	@Before

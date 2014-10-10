@@ -1,4 +1,4 @@
-package co.edu.eafit.safebuy.domain.model.comprador;
+package com.talosdigital.safebuy.domain.model;
 
 import java.io.Serializable;
 import java.util.List;
@@ -31,11 +31,8 @@ public class Store implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "webstore_idwebstore_seq" )
 	@Column(name = "id", updatable=false)
 	private int id;
-	
 	private String name;
-	
 	private String nit;
-
 	public int getId() {
 		return id;
 	}

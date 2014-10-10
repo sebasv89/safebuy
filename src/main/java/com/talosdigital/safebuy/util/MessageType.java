@@ -1,4 +1,4 @@
-package co.edu.eafit.safebuy.util;
+package com.talosdigital.safebuy.util;
 
 public enum MessageType {
 
