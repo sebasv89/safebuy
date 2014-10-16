@@ -7,11 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import com.talosdigital.safebuy.domain.model.Store;
 import com.talosdigital.safebuy.infraestructure.persistence.util.PersistenceService;
-import com.talosdigitlal.safebuy.util.dto.StoreDto;
 
 /**
  * This Class is a DAO from buyer Table
- * @author jhenaoz
+ * @author jhenaoz 16/Oct/2014
+ * @version 
  */
 @Repository
 public class StoreDao {
@@ -31,12 +31,12 @@ public class StoreDao {
 		return persistence.findById(Store.class, id);
 	}
 	
-	public Store createStore(StoreDto storedto){
-		return persistence.save(storedto.fromDto(storedto));
+	public Store createStore(Store store){
+		return persistence.save(store);
 	}
 	
-	public Store updateStore(StoreDto storedto){
-		return persistence.update(storedto.fromDto(storedto));
+	public Store updateStore(Store store){
+		return persistence.update(store);
 	}
 	
 	public void deleteStore(int id){

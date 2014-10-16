@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.talosdigital.safebuy.controllers.BuyerController;
 import com.talosdigital.safebuy.domain.model.Buyer;
 import com.talosdigital.safebuy.infraestructure.persistence.util.PersistenceService;
 import com.talosdigital.safebuy.util.MessageType;
 import com.talosdigital.safebuy.util.ResponseMessage;
+import com.talosdigitlal.safebuy.util.dto.BuyerDto;
 
 @Controller
 public class RegisterBuyerController {
@@ -22,6 +24,9 @@ public class RegisterBuyerController {
 	@Autowired
 	private PersistenceService persistenceService;
 
+	@Autowired
+	private BuyerController buyerController;
+	
 	@RequestMapping("/registerBuyer.html")
 	public ModelAndView getPage() {
 		return new ModelAndView("/pages/registerBuyer.jsp");
@@ -57,19 +62,18 @@ public class RegisterBuyerController {
 			return ResponseMessage.createMessage(
 					"El Email no puede estar vacio", MessageType.error);
 		}
-		Buyer buyer = new Buyer();
-		buyer.setName(name.toLowerCase());
-		buyer.setLastName(lastName);
-		List<Buyer> existingBuyersWithId = persistenceService.executeQuery(Buyer.class, "SELECT b FROM Buyer b WHERE b.name = '" + name + "'");
+		BuyerDto buyerdto = new BuyerDto();
+		buyerdto.setName(name.toLowerCase());
+		buyerdto.setLastName(lastName.toLowerCase());
+		
+		List<Buyer> existingBuyersWithId = buyerController.existingBuyerWithId(name);
 		
 		if (CollectionUtils.isNotEmpty(existingBuyersWithId)) {
 			return ResponseMessage.createMessage(
 					"El usuario comprador ya existe: " + user,
 					MessageType.error);
 		}
-
-		persistenceService.save(buyer);
-
+		buyerController.createSafeBuyer(buyerdto);
 		return ResponseMessage.createMessage("Comprador Creado",
 				MessageType.success);
 	}

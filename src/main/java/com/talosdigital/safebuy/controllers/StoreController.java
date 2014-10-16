@@ -23,11 +23,11 @@ public class StoreController {
 		return storedao.getStore(id);
 	}
 	public Store createStore(StoreDto storedto){
-		return storedao.createStore(storedto);
+		return storedao.createStore(storedto.fromDto(storedto));
 	}
 	
 	public Store updateStore(StoreDto storedto){
-		return storedao.updateStore(storedto);
+		return storedao.updateStore(storedto.fromDto(storedto));
 	}
 	
 	public void deleteStore(int id){

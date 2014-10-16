@@ -3,14 +3,10 @@ package com.talosdigital.safebuy.infraestructure.persistence.util;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Component;
-
-import com.talosdigital.safebuy.domain.model.Buyer;
 
 
 @Component("jpaPersistenceService")
