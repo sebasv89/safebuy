@@ -16,24 +16,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-
-
-
-
-
-
-
-
-
-
 import com.talosdigital.safebuy.domain.model.Buyer;
-import com.talosdigital.safebuy.infraestructure.persistence.util.PersistenceService;
+import com.talosdigital.safebuy.infraestructure.persistence.dao.BuyerDao;
+import com.talosdigitlal.safebuy.util.dto.BuyerDto;
 
 @Controller
 public class BuyerRestController {
 	
 	@Autowired
-	private PersistenceService persistenceService;
+	private BuyerDao buyerdao;
 	
 	@RequestMapping("/hola.html")
 	public ModelAndView getPage() {
@@ -44,32 +35,32 @@ public class BuyerRestController {
 	@ResponseBody
 	public List<Buyer> getSafeBuyerList() {
 		//response.setHeader("Content-type", MediaType.APPLICATION_JSON.toString());
-		return persistenceService.executeQuery(Buyer.class, "SELECT b FROM Buyer b");
+		return buyerdao.getSafeBuyerList();
 	}
 	
 	@RequestMapping(value = "/rest/buyer/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Buyer getSafeBuyer(HttpServletResponse response, @PathVariable("id") int id) {
 		//response.setHeader("Content-type", MediaType.APPLICATION_JSON.toString());
-		return persistenceService.findById(Buyer.class, id);
+		return buyerdao.getSafeBuyer(id);
 	}
 
 	@RequestMapping(value = "/rest/buyer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public Buyer createSafeBuyer(@RequestBody Buyer buyer) {
-		return persistenceService.save(buyer);
+	public Buyer createSafeBuyer(@RequestBody BuyerDto buyerdto) {
+		return buyerdao.createSafeBuyer(buyerdto);
 	}
 
 	@RequestMapping(value = "/rest/buyer/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public void updateSafeBuyer(@RequestBody Buyer buyer, @PathVariable("id") int id) {
-		persistenceService.update(buyer);
+	public void updateSafeBuyer(@RequestBody BuyerDto buyer, @PathVariable("id") int id) {
+		buyerdao.updateSafeBuyer(buyer);
 	}
 
 	@RequestMapping(value = "/rest/buyer/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
 	public void deleteSafeBuyer(@PathVariable("id") int id) {
-		persistenceService.remove(persistenceService.findById(Buyer.class, id));
+		buyerdao.deleteSafeBuyer(id);
 	}
 }
