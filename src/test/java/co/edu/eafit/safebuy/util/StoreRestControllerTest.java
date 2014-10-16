@@ -15,7 +15,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.talosdigital.safebuy.domain.model.Store;
-import com.talosdigital.safebuy.infraestructure.persistence.util.PersistenceService;
+import com.talosdigital.safebuy.persistence.util.PersistenceService;
 import com.talosdigital.safebuy.interfaces.controller.StoreRestController;
 
 import static org.mockito.Mockito.*;

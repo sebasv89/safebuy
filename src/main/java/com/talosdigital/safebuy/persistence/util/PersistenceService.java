@@ -1,4 +1,4 @@
-package com.talosdigital.safebuy.infraestructure.persistence.util;
+package com.talosdigital.safebuy.persistence.util;
 
 import java.util.List;
 

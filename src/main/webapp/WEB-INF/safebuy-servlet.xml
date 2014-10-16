@@ -15,10 +15,10 @@
 	
     
     <!-- Enables Spring MVC annotations -->
-	<context:component-scan base-package="co.edu.eafit.safebuy"/>
+	<context:component-scan base-package="com.talosdigital.safebuy"/>
 		
 	<mvc:annotation-driven />
-	
+	<!--ESTO QUE SIGNIFICA?? -->
 	<import resource="hibernate-configuration.xml" />
 	
 

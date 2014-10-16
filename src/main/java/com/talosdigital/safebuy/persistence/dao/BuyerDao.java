@@ -1,12 +1,12 @@
-package com.talosdigital.safebuy.infraestructure.persistence.dao;
+package com.talosdigital.safebuy.persistence.dao;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.talosdigital.safebuy.infraestructure.persistence.util.PersistenceService;
 import com.talosdigital.safebuy.domain.model.Buyer;
+import com.talosdigital.safebuy.persistence.util.PersistenceService;
 /**
  * This is a Data Access Object for Buyers
  * @version 16/Oct/2014

@@ -1,4 +1,4 @@
-package com.talosdigitlal.safebuy.util.dto;
+package com.talosdigital.safebuy.util.dto;
 
 import com.talosdigital.safebuy.domain.model.Buyer;
 import com.talosdigital.safebuy.domain.model.Store;

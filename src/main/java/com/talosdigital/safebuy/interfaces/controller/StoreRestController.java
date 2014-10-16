@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.talosdigital.safebuy.domain.model.Store;
-import com.talosdigital.safebuy.infraestructure.persistence.util.PersistenceService;
+import com.talosdigital.safebuy.persistence.util.PersistenceService;
 
 @Controller
 public class StoreRestController {

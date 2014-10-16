@@ -13,10 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.talosdigital.safebuy.controllers.BuyerController;
 import com.talosdigital.safebuy.domain.model.Buyer;
-import com.talosdigital.safebuy.infraestructure.persistence.util.PersistenceService;
+import com.talosdigital.safebuy.persistence.util.PersistenceService;
 import com.talosdigital.safebuy.util.MessageType;
 import com.talosdigital.safebuy.util.ResponseMessage;
-import com.talosdigitlal.safebuy.util.dto.BuyerDto;
+import com.talosdigital.safebuy.util.dto.BuyerDto;
 
 @Controller
 public class RegisterBuyerController {

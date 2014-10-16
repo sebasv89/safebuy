@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.talosdigital.safebuy.domain.model.Store;
-import com.talosdigital.safebuy.infraestructure.persistence.dao.StoreDao;
-import com.talosdigitlal.safebuy.util.dto.StoreDto;
+import com.talosdigital.safebuy.persistence.dao.StoreDao;
+import com.talosdigital.safebuy.util.dto.StoreDto;
 
 @Controller
 public class StoreController {

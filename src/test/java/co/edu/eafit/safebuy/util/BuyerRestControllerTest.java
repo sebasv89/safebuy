@@ -14,7 +14,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import com.talosdigital.safebuy.controllers.BuyerController;
 import com.talosdigital.safebuy.domain.model.Buyer;
 import com.talosdigital.safebuy.domain.model.Store;
-import com.talosdigital.safebuy.infraestructure.persistence.util.JpaPersistenceService;
+import com.talosdigital.safebuy.persistence.util.JpaPersistenceService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BuyerRestControllerTest {
