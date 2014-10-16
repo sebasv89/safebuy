@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.talosdigital.safebuy.controllers.BuyerController;
 import com.talosdigital.safebuy.domain.model.Buyer;
-import com.talosdigital.safebuy.infraestructure.persistence.dao.BuyerDao;
 import com.talosdigitlal.safebuy.util.dto.BuyerDto;
 
 @Controller

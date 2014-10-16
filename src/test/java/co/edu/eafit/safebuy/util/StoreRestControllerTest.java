@@ -43,11 +43,11 @@ public class StoreRestControllerTest {
 		listDefault = new ArrayList<Store>();
 		
 		storeDefault.setId(0);
-		storeDefault.setName("jesse");
+		storeDefault.setName("jesse" + Math.random());
 		storeDefault.setNit("900100200");
 		listDefault.add(storeDefault);
 		otherStoreDefault.setId(1);
-		otherStoreDefault.setName("javier");
+		otherStoreDefault.setName("javier" + Math.random());
 		otherStoreDefault.setNit("900100201");
 		listDefault.add(otherStoreDefault);
 	}

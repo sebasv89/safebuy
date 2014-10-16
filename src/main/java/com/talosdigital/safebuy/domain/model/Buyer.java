@@ -60,7 +60,19 @@ public class Buyer implements Serializable{
 	}
 
 	public void setStore(Store store) {
+		
 		this.store = store;
 	}
+	
+	@Override
+	public boolean equals(Object obj){
+		Buyer buyer = (Buyer)obj;
+		if (buyer.getId() == this.getId()) {
+			return true;
+		}else{
+			return false;
+		}
+	}
 
+	
 }
