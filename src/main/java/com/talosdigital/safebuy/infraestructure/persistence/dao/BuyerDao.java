@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.talosdigital.safebuy.infraestructure.persistence.util.PersistenceService;
 import com.talosdigital.safebuy.domain.model.Buyer;
 import com.talosdigitlal.safebuy.util.dto.BuyerDto;
 
-@Component
+@Repository
 public class BuyerDao {
 
 	@Autowired
