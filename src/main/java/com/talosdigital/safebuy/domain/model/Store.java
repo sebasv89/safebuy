@@ -65,4 +65,13 @@ public class Store implements Serializable {
 		this.buyers = buyers;
 	}
 
+	@Override
+	public boolean equals(Object store){
+		Store str = (Store)store;
+		if (str.getId() == this.id) {
+			return true;
+		}else{
+			return false;
+		}
+	}
 }

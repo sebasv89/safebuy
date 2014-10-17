@@ -18,6 +18,7 @@ public class JpaPersistenceService implements PersistenceService {
 	@Override
 	public <T> T save(T entity) {
 		entityManager.persist(entity);
+		entityManager.flush();
 		return entity;
 	}
 

@@ -4,6 +4,7 @@ import com.talosdigital.safebuy.domain.model.Store;
 
 public class StoreDto {
 
+	private int id;
 	private String name;
 	private String nit;
 	
@@ -15,6 +16,7 @@ public class StoreDto {
 		if (storedto.getNit() != null) {
 			store.setNit(storedto.getNit());
 		}
+		store.setId(storedto.getId());
 		return store;
 	}
 	public StoreDto fromStore(Store store){
@@ -25,6 +27,7 @@ public class StoreDto {
 		if (store.getNit() != null) {
 			storedto.setNit(store.getNit());
 		}
+		storedto.setId(store.getId());
 		return storedto;
 	}
 	public String getName() {
@@ -38,6 +41,12 @@ public class StoreDto {
 	}
 	public void setNit(String nit) {
 		this.nit = nit;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	

@@ -20,8 +20,8 @@ public class BuyerDao {
 	
 	/**
 	 * Retrieve all the buyers in the current database
-	 * @return List, with all the buyers, the search dont produce result, the list
-	 * will be empty
+	 * @return List, with all the buyers, the search don't produce result,
+	 *  the list will be empty
 	 */
 	public List<Buyer> getSafeBuyerList(){
 		return persistence.executeQuery(Buyer.class, "SELECT b FROM Buyer b");
@@ -30,7 +30,7 @@ public class BuyerDao {
 	/**
 	 * Retrieve a single Buyer from database
 	 * @param id, id from the buyer to search in the database
-	 * @return Buyer, a buyer object finded in the database, or null if there is
+	 * @return Buyer, a buyer object funded in the database, or null if there is
 	 * no result
 	 */
 	public Buyer getSafeBuyer(int id){
@@ -38,11 +38,12 @@ public class BuyerDao {
 	}
 	/**
 	 * This method create a single buyer in DB
-	 * @param buyer, with the params setted
+	 * @param buyer, with the params seated
 	 * @return BuyerCreated, and object that represent the creation in the DB;
 	 */
 	public Buyer createSafeBuyer(Buyer buyer){
-		return persistence.save(buyer);
+		Buyer createdBuyer = persistence.save(buyer);
+		return createdBuyer;
 	}
 	/**
 	 * This method update a single buyer in the database
@@ -58,7 +59,8 @@ public class BuyerDao {
 	 * @param id, id of the object to be removed.
 	 */
 	public void deleteSafeBuyer(int id){
-		persistence.remove(persistence.findById(Buyer.class, id));
+		Buyer buyer = getSafeBuyer(id);
+		persistence.remove(buyer);
 	}
 	
 	/**

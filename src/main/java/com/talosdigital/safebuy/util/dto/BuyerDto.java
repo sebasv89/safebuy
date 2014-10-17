@@ -17,15 +17,15 @@ public class BuyerDto {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Store getStore() {
-		return store;
-	}
-	public void setStore(Store store) {
-		this.store = store;
-	}
+//	public Store getStore() {
+//		return store;
+//	}
+//	public void setStore(Store store) {
+//		this.store = store;
+//	}
 	private String name;
 	private String lastName;
-	private Store store;
+//	private Store store;
 	public Buyer fromDto(BuyerDto dto){
 		Buyer buyer = new Buyer();
 		if (dto.getLastName() != null) {
@@ -34,9 +34,9 @@ public class BuyerDto {
 		if (dto.getName() != null) {
 			buyer.setName(dto.getName());
 		}
-		if (dto.getStore() != null) {
-			buyer.setStore(dto.getStore());
-		}
+//		if (dto.getStore() != null) {
+//			buyer.setStore(dto.getStore());
+//		}
 		return buyer;
 	}
 	
@@ -48,9 +48,9 @@ public class BuyerDto {
 		if (buyer.getName() != null) {
 			buyerdto.setName(buyer.getName());
 		}
-		if (buyer.getStore() != null) {
-			buyerdto.setStore(buyer.getStore());
-		}
+//		if (buyer.getStore() != null) {
+//			buyerdto.setStore(buyer.getStore());
+//		}
 		return buyerdto;
 	}
 }

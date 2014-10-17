@@ -24,8 +24,10 @@ public class Buyer implements Serializable{
 	@Column(name = "id", updatable=false)
 	private int id;
 
+	@Column(name="name", updatable=true, insertable=true)
 	private String name;
 
+	@Column(name="lastName" , updatable= true , insertable = true)
 	private String lastName;
 	
 	@ManyToOne

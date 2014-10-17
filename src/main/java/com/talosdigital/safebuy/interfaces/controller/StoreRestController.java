@@ -15,13 +15,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.talosdigital.safebuy.domain.model.Store;
-import com.talosdigital.safebuy.persistence.util.PersistenceService;
+import com.talosdigital.safebuy.persistence.dao.StoreDao;
+import com.talosdigital.safebuy.util.dto.StoreDto;
 
 @Controller
 public class StoreRestController {
-	
+
 	@Autowired
-	private PersistenceService persistenceService;
+	private StoreDao storedao;
 	
 	@RequestMapping("/store.html")
 	public ModelAndView getPage(){
@@ -31,33 +32,35 @@ public class StoreRestController {
 	@RequestMapping(value = "/rest/store", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public List<Store> getStoreList() {
-		return persistenceService.executeQuery(Store.class, "SELECT s FROM Store s");
+		return storedao.getStoreList();
 	}
 	
 	@RequestMapping(value = "/rest/store/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Store getStore(@PathVariable("id") int id) {
-		return persistenceService.findById(Store.class, id);
+		return storedao.getStore(id);
 	}
 	
 	@RequestMapping(value = "/rest/store", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public Store createStore(@RequestBody Store store) {
-		return persistenceService.save(store);
+	public Store createStore(@RequestBody StoreDto storedto) {
+		return storedao.createStore(storedto.fromDto(storedto));
 	}
 	
 	@RequestMapping(value = "/rest/store/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public Store updateStore(@RequestBody Store store, @PathVariable("id") int id) {
-		return persistenceService.update(store);
+	public Store updateStore(@RequestBody StoreDto storedto, @PathVariable("id") int id) {
+		storedto.setId(id);
+		Store store = storedao.updateStore(storedto.fromDto(storedto));
+		return store;
 	}
 	
 	@RequestMapping(value = "/rest/store/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
 	public void deleteStore(@PathVariable("id") int id) {
-		persistenceService.remove(persistenceService.findById(Store.class, id));
+		storedao.deleteStore(id);
 	}
 
 }

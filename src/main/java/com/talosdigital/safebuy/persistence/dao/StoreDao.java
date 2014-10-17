@@ -32,7 +32,9 @@ public class StoreDao {
 	}
 	
 	public Store createStore(Store store){
-		return persistence.save(store);
+		
+		Store createdStore = persistence.save(store);
+		return createdStore;
 	}
 	
 	public Store updateStore(Store store){
