@@ -1,4 +1,4 @@
-package co.edu.eafit.safebuy.util;
+package com.talosdigital.safebuy.test;
 
 import org.junit.Assert;
 import org.junit.Test;
