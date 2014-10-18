@@ -47,8 +47,8 @@ public class BuyerRestController {
 			method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public Buyer createSafeBuyer(@RequestBody BuyerDto buyerdto) {
-		return buyerdao.createSafeBuyer(buyerdto.fromDto(buyerdto));
+	public BuyerDto createSafeBuyer(@RequestBody BuyerDto buyerdto) {
+		return buyerdto.fromBuyer(buyerdao.createSafeBuyer(buyerdto.fromDto(buyerdto)));
 	}
 
 	@RequestMapping(value = "/rest/buyer/{id}",
