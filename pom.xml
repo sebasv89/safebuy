@@ -5,7 +5,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<version>1.0.0-SNAPSHOT</version>
-	<groupId>co.edu.eafit</groupId>
+	<groupId>com.talosdigital</groupId>
 	<artifactId>safebuy</artifactId>
 	<name>SafeBuy</name>
 
@@ -260,6 +260,8 @@
 					</execution>
 				</executions>
 			</plugin>
+			
+<!-- 			this is for declare the compilation level -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

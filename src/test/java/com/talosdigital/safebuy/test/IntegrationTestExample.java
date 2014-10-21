@@ -19,7 +19,6 @@ public class IntegrationTestExample {
 	public void testCreateBuyer(){
 		   HttpHeaders headers = new HttpHeaders();
 		    headers.setContentType(MediaType.APPLICATION_JSON);
-//		    headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 
 		    RestTemplate template = new RestTemplate();
 		    BuyerDto buyerDto = new BuyerDto();
@@ -34,7 +33,6 @@ public class IntegrationTestExample {
 
 
 		    assertEquals(HttpStatus.CREATED, entity.getStatusCode());
-//		    assertTrue(path.startsWith("/aggregators/orders/"));
 		    RestBuyerDto order = entity.getBody();
 
 	}

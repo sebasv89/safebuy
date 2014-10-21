@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.talosdigital.safebuy.controllers.BuyerController;
 import com.talosdigital.safebuy.domain.model.Buyer;
+import com.talosdigital.safebuy.persistence.dao.BuyerDao;
 import com.talosdigital.safebuy.util.MessageType;
 import com.talosdigital.safebuy.util.ResponseMessage;
+import com.talosdigital.safebuy.util.Transformer;
 import com.talosdigital.safebuy.util.dto.BuyerDto;
-
 @Controller
 public class RegisterBuyerController {
 
 	@Autowired
-	private BuyerController buyerController;
+	private BuyerDao buyerDao;
 	
 	@RequestMapping("/registerBuyer.html")
 	public ModelAndView getPage() {
@@ -58,18 +58,19 @@ public class RegisterBuyerController {
 			return ResponseMessage.createMessage(
 					"El Email no puede estar vacio", MessageType.error);
 		}
-		BuyerDto buyerdto = new BuyerDto();
-		buyerdto.setName(name.toLowerCase());
-		buyerdto.setLastName(lastName.toLowerCase());
+		BuyerDto buyerDto = new BuyerDto();
+		buyerDto.setName(name.toLowerCase());
+		buyerDto.setLastName(lastName.toLowerCase());
 		
-		List<Buyer> existingBuyersWithId = buyerController.existingBuyerWithId(name);
+		List<Buyer> existingBuyersWithId = buyerDao.existingBuyerWithId(name);
 		
 		if (CollectionUtils.isNotEmpty(existingBuyersWithId)) {
 			return ResponseMessage.createMessage(
 					"El usuario comprador ya existe: " + user,
 					MessageType.error);
 		}
-		buyerController.createSafeBuyer(buyerdto);
+		
+		buyerDao.createSafeBuyer(Transformer.toBuyer(buyerDto));
 		return ResponseMessage.createMessage("Comprador Creado",
 				MessageType.success);
 	}

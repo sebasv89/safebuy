@@ -29,7 +29,7 @@
 			<property name="driverClassName" value="org.postgresql.Driver"></property>
   			<property name="url" value="jdbc:postgresql://localhost:5432/safebuy"></property>
   			<property name="username" value="postgres"></property>
-  			<property name="password" value="postgres"></property>
+  			<property name="password" value="test4echo"></property>
 		</bean>
 
    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
