@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.talosdigital.safebuy.domain.model.Store;
 import com.talosdigital.safebuy.persistence.dao.StoreDao;
+import com.talosdigital.safebuy.util.Transformer.StoreTransformer;
 import com.talosdigital.safebuy.util.dto.StoreDto;
 
 @Controller
@@ -29,32 +30,38 @@ public class StoreRestController {
 		return new ModelAndView("/pages/indexstore.jsp");
 	}
 	
-	@RequestMapping(value = "/rest/store", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/rest/store", method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public List<Store> getStoreList() {
 		return storedao.getStoreList();
 	}
 	
-	@RequestMapping(value = "/rest/store/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/rest/store/{id}", method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public Store getStore(@PathVariable("id") int id) {
-		return storedao.getStore(id);
+	public StoreDto getStore(@PathVariable("id") int id) {
+		return StoreTransformer.toStoreDto(storedao.getStore(id));
 	}
 	
-	@RequestMapping(value = "/rest/store", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/rest/store", method = RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public Store createStore(@RequestBody StoreDto storedto) {
-		return storedao.createStore(storedto.fromDto(storedto));
+	public StoreDto createStore(@RequestBody StoreDto storeDto) {
+		Store createdStore = storedao.createStore(StoreTransformer.toStore(storeDto));
+		return StoreTransformer.toStoreDto(createdStore);
 	}
 	
-	@RequestMapping(value = "/rest/store/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/rest/store/{id}", method = RequestMethod.PUT,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public Store updateStore(@RequestBody StoreDto storedto, @PathVariable("id") int id) {
-		storedto.setId(id);
-		Store store = storedao.updateStore(storedto.fromDto(storedto));
-		return store;
+	public StoreDto updateStore(@RequestBody StoreDto storeDto, @PathVariable("id") int id) {
+		Store store = StoreTransformer.toStore(storeDto);
+		store.setId(id);
+		store = storedao.updateStore(store);
+		return StoreTransformer.toStoreDto(store);
 	}
 	
 	@RequestMapping(value = "/rest/store/{id}", method = RequestMethod.DELETE)

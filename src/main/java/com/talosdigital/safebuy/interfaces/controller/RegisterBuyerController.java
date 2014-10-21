@@ -15,7 +15,7 @@ import com.talosdigital.safebuy.domain.model.Buyer;
 import com.talosdigital.safebuy.persistence.dao.BuyerDao;
 import com.talosdigital.safebuy.util.MessageType;
 import com.talosdigital.safebuy.util.ResponseMessage;
-import com.talosdigital.safebuy.util.Transformer;
+import com.talosdigital.safebuy.util.Transformer.BuyerTransformer;
 import com.talosdigital.safebuy.util.dto.BuyerDto;
 @Controller
 public class RegisterBuyerController {
@@ -70,7 +70,7 @@ public class RegisterBuyerController {
 					MessageType.error);
 		}
 		
-		buyerDao.createSafeBuyer(Transformer.toBuyer(buyerDto));
+		buyerDao.createSafeBuyer(BuyerTransformer.toBuyer(buyerDto));
 		return ResponseMessage.createMessage("Comprador Creado",
 				MessageType.success);
 	}

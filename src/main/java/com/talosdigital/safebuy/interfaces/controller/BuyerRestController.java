@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.talosdigital.safebuy.domain.model.Buyer;
 import com.talosdigital.safebuy.persistence.dao.BuyerDao;
-import com.talosdigital.safebuy.util.Transformer;
+import com.talosdigital.safebuy.util.Transformer.BuyerTransformer;
 import com.talosdigital.safebuy.util.dto.BuyerDto;
 
 @Controller
@@ -49,8 +49,8 @@ public class BuyerRestController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	public BuyerDto createSafeBuyer(@RequestBody BuyerDto buyerDto) {
-		Buyer buyer = buyerdao.createSafeBuyer(Transformer.toBuyer(buyerDto));
-		return Transformer.toBuyerDto(buyer);
+		Buyer buyer = buyerdao.createSafeBuyer(BuyerTransformer.toBuyer(buyerDto));
+		return BuyerTransformer.toBuyerDto(buyer);
 	}
 
 	@RequestMapping(value = "/rest/buyer/{id}",
@@ -58,7 +58,7 @@ public class BuyerRestController {
 	@ResponseStatus(HttpStatus.OK)
 	public void updateSafeBuyer(@RequestBody BuyerDto buyerDto,
 			@PathVariable("id") int id) {
-		buyerdao.updateSafeBuyer(Transformer.toBuyer(buyerDto));
+		buyerdao.updateSafeBuyer(BuyerTransformer.toBuyer(buyerDto));
 	}
 
 	@RequestMapping(value = "/rest/buyer/{id}", method = RequestMethod.DELETE)

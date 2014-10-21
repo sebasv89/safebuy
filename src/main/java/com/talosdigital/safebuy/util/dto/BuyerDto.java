@@ -1,34 +1,10 @@
 package com.talosdigital.safebuy.util.dto;
 
-import com.talosdigital.safebuy.domain.model.Buyer;
-
 public class BuyerDto {
 
+	private int id;
 	private String name;
 	private String lastName;
-	
-	public Buyer fromDto(BuyerDto dto){
-		Buyer buyer = new Buyer();
-		if (dto.getLastName() != null) {
-			buyer.setLastName(dto.getName());
-		}
-		if (dto.getName() != null) {
-			buyer.setName(dto.getName());
-		}
-
-		return buyer;
-	}
-	
-	public BuyerDto fromBuyer(Buyer buyer){
-		BuyerDto buyerdto = new BuyerDto();
-		if (buyer.getLastName() != null) {
-			buyerdto.setLastName(buyer.getName());
-		}
-		if (buyer.getName() != null) {
-			buyerdto.setName(buyer.getName());
-		}
-		return buyerdto;
-	}
 	
 	public String getName() {
 		return name;
@@ -41,5 +17,11 @@ public class BuyerDto {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 }

@@ -13,7 +13,7 @@ import com.talosdigital.safebuy.domain.model.Buyer;
 import com.talosdigital.safebuy.domain.model.Store;
 import com.talosdigital.safebuy.interfaces.controller.BuyerRestController;
 import com.talosdigital.safebuy.persistence.dao.BuyerDao;
-import com.talosdigital.safebuy.util.Transformer;
+import com.talosdigital.safebuy.util.Transformer.BuyerTransformer;
 import com.talosdigital.safebuy.util.dto.BuyerDto;
 
 import static org.mockito.Mockito.*;
@@ -36,7 +36,7 @@ public class BuyerRestControllerTest {
 		buyer.setLastName("Last Name" + Math.random());
 		buyer.setName("Name" + Math.random());
 		buyer.setStore(new Store());
-		buyerDto =Transformer.toBuyerDto(buyer);
+		buyerDto =BuyerTransformer.toBuyerDto(buyer);
 	}
 
 	@Test
